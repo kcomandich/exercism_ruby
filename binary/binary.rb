@@ -6,7 +6,7 @@ To get started with TDD, see the `README.md` file in your
 `ruby/binary` directory.
 =end
 
-module Binary
+class Binary
   def self.to_decimal(binary)
     raise ArgumentError if binary =~ /[^01]/
     result = 0
