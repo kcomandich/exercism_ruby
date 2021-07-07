@@ -10,11 +10,7 @@ class Binary
   def self.to_decimal(binary)
     raise ArgumentError if binary =~ /[^01]/
     result = 0
-    place = 1
-    binary.reverse.each_char do |char|
-     result += place * char.to_i
-     place *= 2
-    end
-   return result
+    binary.reverse.each_char.with_index {|char, index| result += char.to_i * 2**index }
+    return result
   end
 end
