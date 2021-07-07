@@ -8,13 +8,13 @@ To get started with TDD, see the `README.md` file in your
 
 module Binary
  def self.to_decimal(binary)
-   total = 0
+   result = 0
    place = 1
     binary.reverse.each_char do |digit|
      raise(ArgumentError) if digit != '0' and digit != '1'
-     total += place * digit.to_i
+     result += place * digit.to_i
      place *= 2
     end
-   return total
+   return result
  end
 end
