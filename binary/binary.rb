@@ -11,8 +11,8 @@ module Binary
     raise ArgumentError if binary =~ /[^01]/
     result = 0
     place = 1
-    binary.reverse.each_char do |digit|
-     result += place * digit.to_i
+    binary.reverse.each_char do |char|
+     result += place * char.to_i
      place *= 2
     end
    return result
