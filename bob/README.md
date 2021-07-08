@@ -4,24 +4,43 @@ Bob is a lackadaisical teenager. In conversation, his responses are very limited
 
 Bob answers 'Sure.' if you ask him a question.
 
-He answers 'Woah, chill out!' if you yell at him.
+He answers 'Whoa, chill out!' if you yell at him.
 
-He says 'Fine. Be that way!' if you address him without actually saying anything.
+He answers 'Calm down, I know what I'm doing!' if you yell a question at him.
+
+He says 'Fine. Be that way!' if you address him without actually saying
+anything.
 
 He answers 'Whatever.' to anything else.
 
-## Instructions
+Bob's conversational partner is a purist when it comes to written communication and always follows normal rules regarding sentence punctuation in English.
 
-Run the test file, and fix each of the errors in turn. When you get the first test to pass, go to the first pending or skipped test, and make that pass as well. When all of the tests are passing, feel free to submit.
+* * * *
 
-Remember that passing code is just the first step. The goal is to work towards a solution that is as readable and expressive as you can make it.
+For installation and learning resources, refer to the
+[Ruby resources page](http://exercism.io/languages/ruby/resources).
 
-Please make your solution as general as possible. Good code doesn't just pass the test suite, it works with any input that fits the specification.
+For running the tests provided, you will need the Minitest gem. Open a
+terminal window and run the following command to install minitest:
 
-Have fun!
+    gem install minitest
 
+If you would like color output, you can `require 'minitest/pride'` in
+the test file, or note the alternative instruction, below, for running
+the test file.
+
+Run the tests from the exercise directory using the following command:
+
+    ruby bob_test.rb
+
+To include color from the command line:
+
+    ruby -r minitest/pride bob_test.rb
 
 
 ## Source
 
-Inspired by the 'Deaf Grandma' exercise in Chris Pine's Learn to Program tutorial. [view source](http://pine.fm/LearnToProgram/?Chapter=06)
+Inspired by the 'Deaf Grandma' exercise in Chris Pine's Learn to Program tutorial. [http://pine.fm/LearnToProgram/?Chapter=06](http://pine.fm/LearnToProgram/?Chapter=06)
+
+## Submitting Incomplete Solutions
+It's possible to submit an incomplete solution so you can see how others have completed the exercise.

@@ -1,13 +1,15 @@
 class Bob
 
-  def hey(input)
+  def self.hey(input)
     conversation = Conversation.new(input)
 
     case
     when conversation.silent?
       return "Fine. Be that way!"
+    when conversation.yelling? && conversation.question?
+      return "Calm down, I know what I'm doing!"
     when conversation.yelling? 
-      return "Woah, chill out!"
+      return "Whoa, chill out!"
     when conversation.question? 
       return "Sure."
     else

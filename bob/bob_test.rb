@@ -1,115 +1,130 @@
 require 'minitest/autorun'
-begin
-  require_relative 'bob'
-rescue LoadError => e
-  puts "\n\n#{e.backtrace.first} #{e.message}"
-  puts DATA.read
-  exit 1
-end
+require_relative 'bob'
 
-class BobTest < MiniTest::Unit::TestCase
+# Common test data version: 1.6.0 42b9d45
+class BobTest < Minitest::Test
   def test_stating_something
-    assert_equal 'Whatever.', ::Bob.new.hey('Tom-ay-to, tom-aaaah-to.')
+    remark = "Tom-ay-to, tom-aaaah-to."
+    assert_equal "Whatever.", Bob.hey(remark), %q{Bob hears "Tom-ay-to, tom-aaaah-to.", and..}
   end
 
   def test_shouting
-    assert_equal 'Woah, chill out!', ::Bob.new.hey('WATCH OUT!')
+    remark = "WATCH OUT!"
+    assert_equal "Whoa, chill out!", Bob.hey(remark), %q{Bob hears "WATCH OUT!", and..}
   end
 
   def test_shouting_gibberish
-    gibberish = ('A'..'Z').to_a.shuffle[0,10].join
-    assert_equal 'Woah, chill out!', ::Bob.new.hey(gibberish)
+    remark = "FCECDFCAAB"
+    assert_equal "Whoa, chill out!", Bob.hey(remark), %q{Bob hears "FCECDFCAAB", and..}
   end
 
   def test_asking_a_question
-    assert_equal 'Sure.', ::Bob.new.hey('Does this cryogenic chamber make me look fat?')
+    remark = "Does this cryogenic chamber make me look fat?"
+    assert_equal "Sure.", Bob.hey(remark), %q{Bob hears "Does this cryogenic chamber make me look fat?", and..}
   end
 
   def test_asking_a_numeric_question
-    assert_equal 'Sure.', ::Bob.new.hey('You are, what, like 15?')
+    remark = "You are, what, like 15?"
+    assert_equal "Sure.", Bob.hey(remark), %q{Bob hears "You are, what, like 15?", and..}
   end
 
   def test_asking_gibberish
-    gibberish = ('a'..'z').to_a.shuffle[0,10].join
-    assert_equal 'Sure.', ::Bob.new.hey("#{gibberish}?")
+    remark = "fffbbcbeab?"
+    assert_equal "Sure.", Bob.hey(remark), %q{Bob hears "fffbbcbeab?", and..}
   end
 
   def test_talking_forcefully
-    assert_equal 'Whatever.', ::Bob.new.hey("Let's go make out behind the gym!")
+    remark = "Hi there!"
+    assert_equal "Whatever.", Bob.hey(remark), %q{Bob hears "Hi there!", and..}
   end
 
   def test_using_acronyms_in_regular_speech
-    assert_equal 'Whatever.', ::Bob.new.hey("It's OK if you don't want to go to the DMV.")
+    remark = "It's OK if you don't want to go work for NASA."
+    assert_equal "Whatever.", Bob.hey(remark), %q{Bob hears "It's OK if you don't want to go work for NASA.", and..}
   end
 
-  def test_forceful_questions
-    assert_equal 'Woah, chill out!', ::Bob.new.hey('WHAT THE HELL WERE YOU THINKING?')
+  def test_forceful_question
+    remark = "WHAT'S GOING ON?"
+    assert_equal "Calm down, I know what I'm doing!", Bob.hey(remark), %q{Bob hears "WHAT'S GOING ON?", and..}
   end
 
   def test_shouting_numbers
-    assert_equal 'Woah, chill out!', ::Bob.new.hey('1, 2, 3 GO!')
+    remark = "1, 2, 3 GO!"
+    assert_equal "Whoa, chill out!", Bob.hey(remark), %q{Bob hears "1, 2, 3 GO!", and..}
   end
 
-  def test_only_numbers
-    assert_equal 'Whatever.', ::Bob.new.hey('1, 2, 3')
+  def test_no_letters
+    remark = "1, 2, 3"
+    assert_equal "Whatever.", Bob.hey(remark), %q{Bob hears "1, 2, 3", and..}
   end
 
-  def test_question_with_only_numbers
-    assert_equal 'Sure.', ::Bob.new.hey('4?')
+  def test_question_with_no_letters
+    remark = "4?"
+    assert_equal "Sure.", Bob.hey(remark), %q{Bob hears "4?", and..}
   end
 
   def test_shouting_with_special_characters
-    assert_equal 'Woah, chill out!', ::Bob.new.hey('ZOMG THE %^*@#$(*^ ZOMBIES ARE COMING!!11!!1!')
+    remark = "ZOMG THE %^*@\#$(*^ ZOMBIES ARE COMING!!11!!1!"
+    assert_equal "Whoa, chill out!", Bob.hey(remark), %q{Bob hears "ZOMG THE %^*@\#$(*^ ZOMBIES ARE COMING!!11!!1!", and..}
   end
 
   def test_shouting_with_no_exclamation_mark
-    assert_equal 'Woah, chill out!', ::Bob.new.hey('I HATE YOU')
+    remark = "I HATE THE DENTIST"
+    assert_equal "Whoa, chill out!", Bob.hey(remark), %q{Bob hears "I HATE THE DENTIST", and..}
   end
 
   def test_statement_containing_question_mark
-    assert_equal 'Whatever.', ::Bob.new.hey('Ending with ? means a question.')
+    remark = "Ending with ? means a question."
+    assert_equal "Whatever.", Bob.hey(remark), %q{Bob hears "Ending with ? means a question.", and..}
+  end
+
+  def test_non_letters_with_question
+    remark = ":) ?"
+    assert_equal "Sure.", Bob.hey(remark), %q{Bob hears ":) ?", and..}
   end
 
   def test_prattling_on
-    assert_equal 'Sure.', ::Bob.new.hey("Wait! Hang on. Are you going to be OK?")
+    remark = "Wait! Hang on. Are you going to be OK?"
+    assert_equal "Sure.", Bob.hey(remark), %q{Bob hears "Wait! Hang on. Are you going to be OK?", and..}
   end
 
   def test_silence
-    assert_equal 'Fine. Be that way!', ::Bob.new.hey('')
+    remark = ""
+    assert_equal "Fine. Be that way!", Bob.hey(remark), %q{Bob hears "", and..}
   end
 
   def test_prolonged_silence
-    silence = " " * rand(1..10)
-    assert_equal 'Fine. Be that way!', ::Bob.new.hey(silence)
+    remark = "          "
+    assert_equal "Fine. Be that way!", Bob.hey(remark), %q{Bob hears "          ", and..}
   end
 
-  def test_on_multiple_line_questions
-    assert_equal 'Whatever.', ::Bob.new.hey(%{
-Does this cryogenic chamber make me look fat?
-no})
+  def test_alternate_silence
+    remark = "\t\t\t\t\t\t\t\t\t\t"
+    assert_equal "Fine. Be that way!", Bob.hey(remark), %q{Bob hears "\t\t\t\t\t\t\t\t\t\t", and..}
+  end
+
+  def test_multiple_line_question
+    remark = "\nDoes this cryogenic chamber make me look fat?\nNo."
+    assert_equal "Whatever.", Bob.hey(remark), %q{Bob hears "\nDoes this cryogenic chamber make me look fat?\nNo.", and..}
+  end
+
+  def test_starting_with_whitespace
+    remark = "         hmmmmmmm..."
+    assert_equal "Whatever.", Bob.hey(remark), %q{Bob hears "         hmmmmmmm...", and..}
+  end
+
+  def test_ending_with_whitespace
+    remark = "Okay if like my  spacebar  quite a bit?   "
+    assert_equal "Sure.", Bob.hey(remark), %q{Bob hears "Okay if like my  spacebar  quite a bit?   ", and..}
+  end
+
+  def test_other_whitespace
+    remark = "\n\r \t"
+    assert_equal "Fine. Be that way!", Bob.hey(remark), %q{Bob hears "\n\r \t", and..}
+  end
+
+  def test_non_question_ending_with_whitespace
+    remark = "This is a statement ending with whitespace      "
+    assert_equal "Whatever.", Bob.hey(remark), %q{Bob hears "This is a statement ending with whitespace      ", and..}
   end
 end
-
-__END__
-
-*****************************************************
-You got an error, which is exactly as it should be.
-This is the first step in the Test-Driven Development
-(TDD) process.
-
-The most important part of the error is
-
-      cannot load such file
-
-It's looking for a file named bob.rb that doesn't
-exist yet.
-
-To fix the error, create an empty file named bob.rb
-in the same directory as the bob_test.rb file.
-
-Then run the test again.
-
-For more guidance as you work on this exercise, see
-GETTING_STARTED.md.
-*****************************************************
-
