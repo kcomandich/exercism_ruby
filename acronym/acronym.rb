@@ -1,6 +1,6 @@
 class Acronym
   def self.abbreviate(phrase)
     words = phrase.split(/\W/).reject(&:empty?)
-    words.inject(""){|result,w| result << w[0]}.upcase
+    words.map{|w| w[0]}.join.upcase
   end
 end
