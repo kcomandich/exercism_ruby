@@ -1,6 +1,6 @@
 class Matrix
   def initialize(string)
-    @rows = string.lines.map{|row| row.split.map{|num| num.to_i } }
+    @rows = string.lines.map{|row| row.split.map(&:to_i)}
     @columns = @rows.transpose
   end
 
