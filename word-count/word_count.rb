@@ -6,8 +6,6 @@ class Phrase
   end
 
   def word_count
-    counts = {}
-    @words.each{|word| counts[word] = counts[word]? counts[word] + 1 : 1 }
-    counts
+    Hash[@words.map{|word| [word, @words.select{|w| w == word}.count]}]
   end
 end
