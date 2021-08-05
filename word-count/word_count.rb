@@ -6,6 +6,6 @@ class Phrase
   end
 
   def word_count
-    Hash[@words.map{|word| [word, @words.count(word)] }]
+    @words.to_h{|word| [word, @words.count(word)] }
   end
 end
