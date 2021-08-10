@@ -1,7 +1,6 @@
 class Scrabble
   def initialize(word)
-
-    @word = word
+    @word = word ? word.strip.upcase : nil
     @values = {
       'A' => 1, 'E' => 1, 'I' => 1, 'O' => 1, 'U' => 1, 'L' => 1, 'N' => 1, 'R' => 1, 'S' => 1, 'T' => 1,
       'D' => 2, 'G' => 2,
@@ -15,7 +14,7 @@ class Scrabble
 
   def score
     return 0 unless @word
-    @word.strip.upcase.each_char.reduce(0) {|sum, c| sum + @values[c] }
+    @word.each_char.reduce(0) {|sum, c| sum + @values[c] }
   end
 
   def self.score(word)
