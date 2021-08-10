@@ -15,10 +15,7 @@ class Scrabble
 
   def score
     return 0 unless @word
-
-    result = 0
-    @word.upcase.each_char {|c| result += @values[c] if @values[c] }
-    return result
+    @word.strip.upcase.each_char.reduce(0) {|sum, c| sum + @values[c] }
   end
 
   def self.score(word)
