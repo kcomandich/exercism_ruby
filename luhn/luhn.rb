@@ -7,8 +7,7 @@ class Luhn
     result = number.reverse.each_char.with_index.map{ |n, i| i.odd? ? double_a_digit(n.to_i) : n }
     result = result.reduce(0) {|sum, n| sum + n.to_i}
 
-    return true if result % 10 == 0
-    return false 
+    return divisible_by_10?(result)
   end
 
   private
@@ -25,4 +24,9 @@ class Luhn
 
     return digit
   end
+
+  def self.divisible_by_10?(num)
+    num % 10 == 0
+  end
+
 end
