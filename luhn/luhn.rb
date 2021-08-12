@@ -15,11 +15,8 @@ class Luhn
   end
 
   def self.double_a_digit(digit)
-    digit = digit * 2
-    if digit > 9
-      digit = digit - 9
-    end
-
+    digit *= 2
+    digit -= 9 if digit > 9
     return digit
   end
 
