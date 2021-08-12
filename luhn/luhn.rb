@@ -4,9 +4,7 @@ class Luhn
     num.gsub!(/\s/, '')
     return false if invalid_input?(num)
 
-    result = num.reverse.each_char.with_index.map{ |n, i| i.odd? ? double_a_digit(n.to_i) : n }
-    result = result.reduce(0) {|sum, n| sum + n.to_i}
-
+    result = luhn_calculation(num) 
     return divisible_by_10?(result)
   end
 
@@ -29,4 +27,11 @@ class Luhn
     num % 10 == 0
   end
 
+  def self.luhn_calculation(num)
+    luhn_sum( num.reverse.each_char.with_index.map {|n, i| i.odd? ? double_a_digit(n.to_i) : n } )
+  end
+
+  def self.luhn_sum(array)
+    array.reduce(0) {|sum, n| sum + n.to_i}
+  end
 end
