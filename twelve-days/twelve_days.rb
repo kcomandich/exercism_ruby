@@ -16,9 +16,7 @@ class TwelveDays
   }.freeze
 
   def self.song
-    result = ''
-    (1..12).each {|i| result << verse(i)} 
-    result
+    (1..12).reduce('') {|result, i| result << verse(i)} 
   end
 
   private
