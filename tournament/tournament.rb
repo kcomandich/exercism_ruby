@@ -1,10 +1,10 @@
 class Tournament
   HEADER = "Team                           | MP |  W |  D |  L |  P\n".freeze
+  INPUT_PATTERN = /([\w\s]*);([\w\s]*);(win|loss|draw)/.freeze
 
   def self.tally(input)
-
     teams = []
-    matches = input.scan(/([\w\s]*);([\w\s]*);(win|loss|draw)/)
+    matches = input.scan(INPUT_PATTERN)
 
     matches.each do |m|
       newteam1 = false
@@ -34,6 +34,10 @@ class Tournament
       teams << team2 if newteam2
     end
 
+    print_table(teams)
+  end
+
+  def self.print_table(teams)
     result = ''
     result << HEADER
     teams.sort_by{ |t| [-t.points, t.name] }.each do |t|
