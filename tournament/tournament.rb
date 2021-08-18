@@ -1,19 +1,16 @@
 class Tournament
   HEADER = "Team                           | MP |  W |  D |  L |  P\n".freeze
-  INPUT_PATTERN = /([\w\s]*);([\w\s]*);(win|loss|draw)/.freeze
+  INPUT_PATTERN = /([\w\s]*);([\w\s]*);(win|loss|draw)\n/.freeze
 
   def self.tally(input)
     teams = []
-    matches = input.scan(INPUT_PATTERN)
 
-    matches.each do |m|
+    input.scan(INPUT_PATTERN) do |name1, name2, result|
       newteam1 = false
       newteam2 = false
-      name1 = m[0].strip
-      name2 = m[1].strip
 
       known = teams.select {|t| t.name == name1}
-      if known.size > 0 
+      if known.size > 0
         team1 = known[0]
       else
         team1 = Team.new(name1)
@@ -21,20 +18,21 @@ class Tournament
       end
 
       known = teams.select {|t| t.name == name2}
-      if known.size > 0 
+      if known.size > 0
         team2 = known[0]
       else
         team2 = Team.new(name2)
         newteam2 = true
       end
 
-      update_scores(team1, team2, m[2])
+      update_scores(team1, team2, result)
 
       teams << team1 if newteam1
       teams << team2 if newteam2
     end
 
     print_table(teams)
+
   end
 
   def self.print_table(teams)
