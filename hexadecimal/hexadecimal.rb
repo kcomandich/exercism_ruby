@@ -9,6 +9,12 @@ class Hexadecimal
 
   def to_decimal
     return 0 if @hexadecimal =~ INVALID_INPUT
-    @hexadecimal.chars.reduce(0) {|sum, c| sum*16 + (c =~ ALPHA ? HEX_MAP[c] : c.to_i) }
+    @hexadecimal.chars.reduce(0) {|sum, c| sum*16 + digit_value(c) }
+  end
+
+  private
+
+  def digit_value(char)
+    char =~ ALPHA ?  HEX_MAP[char] : char.to_i
   end
 end
