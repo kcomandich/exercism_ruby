@@ -1,10 +1,8 @@
 class HighScores
+  attr_reader :scores
+
   def initialize(scores)
     @scores = scores
-  end
-
-  def scores
-    @scores
   end
 
   def latest
