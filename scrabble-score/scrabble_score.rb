@@ -1,4 +1,6 @@
 class Scrabble
+  attr_reader :word, :values
+
   def initialize(word)
     @word = word ? word.strip.upcase : nil
     @values = {
@@ -13,8 +15,8 @@ class Scrabble
   end
 
   def score
-    return 0 unless @word
-    @word.each_char.reduce(0) {|sum, c| sum + @values[c] }
+    return 0 unless word
+    word.each_char.reduce(0) {|sum, c| sum + values[c] }
   end
 
   def self.score(word)
