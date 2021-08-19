@@ -7,10 +7,6 @@ class Trinary
 
   def to_decimal
     return 0 if @trinary =~ INVALID_INPUT
-
-    @trinary.each_char.with_index.reduce(0) do |sum, (c, i)|
-      place = @trinary.size - i - 1
-      sum + c.to_i * 3**place
-    end
+    @trinary.chars.reduce(0) { |sum, c| 3*sum + c.to_i }
   end
 end
