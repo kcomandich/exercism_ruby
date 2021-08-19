@@ -19,7 +19,7 @@ class Scrabble
     word.each_char.reduce(0) {|sum, c| sum + values[c] }
   end
 
-  def self.score(word)
-    Scrabble.new(word).score
+  def self.score(input)
+    Scrabble.new(input).score
   end
 end
