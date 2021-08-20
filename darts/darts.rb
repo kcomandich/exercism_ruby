@@ -7,14 +7,10 @@ class Darts
 
   def score
     case distance
-    when 0..1
-      return 10
-    when 1..5
-      return 5
-    when 5..10
-      return 1
-    else
-      return 0
+    when 0..1 then 10
+    when 1..5 then 5
+    when 5..10 then 1
+    else 0
     end
   end
 end
