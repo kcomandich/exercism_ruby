@@ -1,17 +1,15 @@
 class Darts
   BOARD_SCORES = { 1 => 10, 5 => 5, 10 => 1 }.freeze
 
-  attr_reader :x, :y, :radius
+  attr_reader :distance
 
   def initialize(x, y)
-    @x = x
-    @y = y
-    @radius = Math.sqrt(x**2 + y**2)
+    @distance = Math.sqrt(x**2 + y**2)
   end
 
   def score
     BOARD_SCORES.each do |k,v|
-      if radius <= k
+      if distance <= k
         return v
       end
     end
