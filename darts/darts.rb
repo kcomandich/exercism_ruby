@@ -1,6 +1,4 @@
 class Darts
-  BOARD_SCORES = { 1 => 10, 5 => 5, 10 => 1 }.freeze
-
   attr_reader :distance
 
   def initialize(x, y)
@@ -8,11 +6,15 @@ class Darts
   end
 
   def score
-    BOARD_SCORES.each do |k,v|
-      if distance <= k
-        return v
-      end
+    case distance
+    when 0..1
+      return 10
+    when 1..5
+      return 5
+    when 5..10
+      return 1
+    else
+      return 0
     end
-    return 0
   end
 end
