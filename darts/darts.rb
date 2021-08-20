@@ -4,7 +4,7 @@ class Darts
   attr_reader :distance
 
   def initialize(x, y)
-    @distance = Math.sqrt(x**2 + y**2)
+    @distance = Math.hypot(x, y)
   end
 
   def score
