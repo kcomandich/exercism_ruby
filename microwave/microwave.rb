@@ -1,21 +1,19 @@
 class Microwave
-  attr_reader :time
+  attr_reader :minutes, :seconds
 
-  def initialize(seconds)
-
-    case seconds
+  def initialize(input)
+    case input
       when 0..99
-        minutes = seconds / 60
-        seconds = seconds % 60
+        @minutes = input / 60
+        @seconds = input % 60
       else
-        remainder = seconds % 100
-        minutes = seconds / 100 + remainder / 60
-        seconds = remainder % 60
+        remainder = input % 100
+        @minutes = input / 100 + remainder / 60
+        @seconds = remainder % 60
       end
-    @time = "%02d:%02d" % [ minutes, seconds ]
   end
 
   def timer
-    time
+    "%02d:%02d" % [ @minutes, @seconds ]
   end
 end
