@@ -4,12 +4,11 @@ class Microwave
   def initialize(input)
     case input
       when 0..99
-        @minutes = input / 60
-        @seconds = input % 60
+        @minutes, @seconds = input.divmod(60)
       else
         remainder = input % 100
-        @minutes = input / 100 + remainder / 60
-        @seconds = remainder % 60
+        @minutes, @seconds = remainder.divmod(60)
+        @minutes += input / 100
       end
   end
 
