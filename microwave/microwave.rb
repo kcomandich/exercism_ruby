@@ -6,9 +6,9 @@ class Microwave
       when 0..99
         @minutes, @seconds = input.divmod(60)
       else
-        remainder = input % 100
-        @minutes, @seconds = remainder.divmod(60)
-        @minutes += input / 100
+        @minutes, @seconds = input.divmod(100)
+        add_min, @seconds = @seconds.divmod(60)
+        @minutes += add_min
       end
   end
 
