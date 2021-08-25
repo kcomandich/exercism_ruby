@@ -1,5 +1,6 @@
 class Gigasecond
+  GIGASECOND = 1_000_000_000.freeze
   def self.from(time)
-    time + 1000000000
+    time + GIGASECOND
   end
 end
