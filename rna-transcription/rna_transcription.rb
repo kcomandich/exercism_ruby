@@ -6,7 +6,7 @@ class Complement
     'A' => 'U'
   }.freeze
 
-  def self.of_dna(rna)
-    rna.each_char.map { |c| DNA_TO_RNA[c] }.join
+  def self.of_dna(dna)
+    dna.each_char.map { |c| DNA_TO_RNA[c] }.join
   end
 end
