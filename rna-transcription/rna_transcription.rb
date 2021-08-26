@@ -1,12 +1,8 @@
 class Complement
-  DNA_TO_RNA = { 
-    'G' => 'C',
-    'C' => 'G',
-    'T' => 'A',
-    'A' => 'U'
-  }.freeze
+  DNA = 'GCTA'.freeze
+  RNA = 'CGAU'.freeze
 
   def self.of_dna(dna)
-    dna.each_char.map { |c| DNA_TO_RNA[c] }.join
+    dna.tr(DNA, RNA)
   end
 end
