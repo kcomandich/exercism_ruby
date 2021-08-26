@@ -1,25 +1,31 @@
 class Year
+  attr_reader :year
+
+  def initialize(year)
+    @year = year
+  end
+
+  def divisible_by_four?
+    year % 4 == 0
+  end
+
+  def divisible_by_100?
+    year % 100 == 0
+  end
+
+  def divisible_by_400?
+    year % 400 == 0
+  end
+
   def self.leap?(year)
-    if divisible_by_400?(year)
+    check_year = Year.new(year)
+
+    if check_year.divisible_by_400?
       return true
-    elsif divisible_by_four?(year) && !divisible_by_100?(year)
+    elsif check_year.divisible_by_four? && ! check_year.divisible_by_100?
       return true
     else
       return false
     end
-  end
-
-  private
-
-  def self.divisible_by_four?(year)
-    year % 4 == 0
-  end
-
-  def self.divisible_by_100?(year)
-    year % 100 == 0
-  end
-
-  def self.divisible_by_400?(year)
-    year % 400 == 0
   end
 end
