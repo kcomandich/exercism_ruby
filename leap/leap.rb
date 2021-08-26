@@ -11,12 +11,6 @@ class Year
 
   private
 
-  attr_reader :year
-
-  def initialize(year)
-    @year = year
-  end
-
   def self.divisible_by_four?(year)
     year % 4 == 0
   end
