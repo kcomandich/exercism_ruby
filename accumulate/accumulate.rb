@@ -1,5 +1,7 @@
 class Array
   def accumulate
-    self.map {|e| yield e }
+    result = []
+    self.each {|e| result << (yield e) }
+    result
   end
 end
