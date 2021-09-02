@@ -1,8 +1,8 @@
 class Series
   attr_reader :series
 
-  def initialize(string)
-    @series = string.split('')
+  def initialize(digit_string)
+    @series = digit_string.split('')
   end
 
   def slices(count)
