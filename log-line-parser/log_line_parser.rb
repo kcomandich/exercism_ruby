@@ -1,7 +1,6 @@
 class LogLineParser
   def initialize(line)
-    @line = line
-    tmp = @line.match(/\[(ERROR|WARNING|INFO)\]: ([\w\s]*)/)
+    tmp = line.match(/\[(ERROR|WARNING|INFO)\]: ([\w\s]*)/)
     @log_level = tmp[1].strip.downcase
     @message = tmp[2].strip 
   end
