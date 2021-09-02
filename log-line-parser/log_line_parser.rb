@@ -1,5 +1,5 @@
 class LogLineParser
-  PARSING_REGEX = /\[(?<level>(ERROR|WARNING|INFO))\]: (?<message>[\w\s]*)/.freeze
+  PARSING_REGEX = /\[(?<level>[A-Z]*)\]: (?<message>[\w\s]*)/.freeze
 
   def initialize(line)
     m = line.match(PARSING_REGEX)
