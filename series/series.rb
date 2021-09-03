@@ -1,6 +1,6 @@
 class Series
   def initialize(digit_string)
-    @series = digit_string.chars
+    @series = digit_string.each_char
   end
 
   def slices(count)
