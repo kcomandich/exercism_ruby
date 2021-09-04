@@ -11,7 +11,7 @@ class Series
   end
 
   def slices(count)
-    raise ArgumentError if count > @series.size
+    raise ArgumentError if count > series.size
     series.each_cons(count).map(&:join)
   end
 end
