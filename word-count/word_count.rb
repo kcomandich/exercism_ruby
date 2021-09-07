@@ -1,7 +1,9 @@
 class Phrase
   WORD = /\b[\w']+\b/.freeze
+  private
   attr_reader :words
 
+  public
   def initialize(phrase)
     @words = phrase.downcase.scan(WORD)
   end
