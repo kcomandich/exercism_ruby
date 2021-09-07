@@ -3,7 +3,7 @@ class Phrase
   attr_reader :words
 
   def initialize(phrase)
-    @words = phrase.scan(WORD).map(&:downcase)
+    @words = phrase.downcase.scan(WORD)
   end
 
   def word_count
