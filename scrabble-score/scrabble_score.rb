@@ -1,6 +1,8 @@
 class Scrabble
+  private
   attr_reader :word, :values
 
+  public
   def initialize(word)
     @word = word ? word.strip.upcase : nil
     @values = {
