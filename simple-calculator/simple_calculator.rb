@@ -9,24 +9,12 @@ class SimpleCalculator
 
   def self.calculate(first_operand, second_operand, operation)
 
-    raise ArgumentError unless first_operand.is_a?(Integer)
-    raise ArgumentError unless second_operand.is_a?(Integer)
+    raise ArgumentError unless first_operand.is_a?(Integer) and second_operand.is_a?(Integer)
+    raise UnsupportedOperation unless ALLOWED_OPERATIONS.include?(operation)
 
-    result = "#{first_operand} #{operation} #{second_operand} = "
-    case operation
-    when '+'
-      result << "#{first_operand + second_operand}"
-    when '/'
-      if second_operand.zero?
-        result = "Division by zero is not allowed."
-      else
-        result << "#{first_operand / second_operand}"
-      end
-    when '*'
-      result << "#{first_operand * second_operand}"
-    else
-      raise UnsupportedOperation
-    end
-    return result
+    "#{first_operand} #{operation} #{second_operand} = #{first_operand.send(operation, second_operand)}"
+
+  rescue ZeroDivisionError
+    "Division by zero is not allowed."
   end
 end
