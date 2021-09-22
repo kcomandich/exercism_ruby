@@ -26,7 +26,6 @@ class Scrabble
   public
 
   def score
-    return 0 unless letters
     letters.sum {|l| TILES[l] }
   end
 end
