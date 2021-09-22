@@ -1,10 +1,10 @@
 class Scrabble
   private
-  attr_reader :word, :values
+  attr_reader :letters, :values
 
   public
-  def initialize(word)
-    @word = word ? word.strip.upcase : nil
+  def initialize(letters)
+    @letters = letters ? letters.strip.upcase.chars : nil
     @values = {
       'A' => 1, 'B' => 3, 'C' => 3, 
       'D' => 2, 'E' => 1, 'F' => 4, 
@@ -19,8 +19,8 @@ class Scrabble
   end
 
   def score
-    return 0 unless word
-    word.chars.sum {|c| values[c] }
+    return 0 unless letters
+    letters.sum {|l| values[l] }
   end
 
   def self.score(input)
