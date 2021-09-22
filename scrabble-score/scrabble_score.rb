@@ -1,6 +1,5 @@
 class Scrabble
   private
-  attr_reader :letters
 
   TILES = {
     'A' => 1, 'B' => 3, 'C' => 3, 
@@ -14,17 +13,20 @@ class Scrabble
     'Y' => 4, 'Z' => 10,
   }.freeze
 
-  public
+  attr_reader :letters
+
+  def self.score(input)
+    Scrabble.new(input).score
+  end
+
   def initialize(letters)
     @letters = letters.to_s.strip.upcase.chars
   end
 
+  public
+
   def score
     return 0 unless letters
     letters.sum {|l| TILES[l] }
-  end
-
-  def self.score(input)
-    Scrabble.new(input).score
   end
 end
