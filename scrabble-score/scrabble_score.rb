@@ -4,7 +4,7 @@ class Scrabble
 
   public
   def initialize(letters)
-    @letters = letters ? letters.strip.upcase.chars : nil
+    @letters = letters.to_s.strip.upcase.chars
     @values = {
       'A' => 1, 'B' => 3, 'C' => 3, 
       'D' => 2, 'E' => 1, 'F' => 4, 
