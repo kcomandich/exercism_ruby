@@ -20,7 +20,7 @@ class Scrabble
 
   def score
     return 0 unless word
-    word.each_char.reduce(0) {|sum, c| sum + values[c] }
+    word.chars.reduce(0) {|sum, c| sum + values[c] }
   end
 
   def self.score(input)
