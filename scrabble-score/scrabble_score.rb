@@ -1,6 +1,4 @@
 class Scrabble
-  private
-
   TILES = {
     'A' => 1, 'B' => 3, 'C' => 3,
     'D' => 2, 'E' => 1, 'F' => 4,
@@ -13,11 +11,13 @@ class Scrabble
     'Y' => 4, 'Z' => 10,
   }.freeze
 
-  attr_reader :letters
-
   def self.score(input)
     Scrabble.new(input).score
   end
+
+  private
+
+  attr_reader :letters
 
   def initialize(letters)
     @letters = letters.to_s.strip.upcase.chars
