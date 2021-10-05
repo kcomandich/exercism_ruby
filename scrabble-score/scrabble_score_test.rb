@@ -18,7 +18,7 @@ class ScrabbleTest < Minitest::Test
     assert_equal 0, Scrabble.new("\n").score
   end
 
-  def test_invalid_input_scores_zero
+  def test_input_not_in_tile_list_scores_zero
     assert_equal 0, Scrabble.new("+").score
   end
 

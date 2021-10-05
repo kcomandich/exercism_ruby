@@ -9,7 +9,9 @@ class Scrabble
     'S' => 1, 'T' => 1, 'U' => 1,
     'V' => 4, 'W' => 4, 'X' => 8,
     'Y' => 4, 'Z' => 10,
-  }.freeze
+  }
+  TILES.default = 0
+  TILES.freeze
 
   def self.score(input)
     Scrabble.new(input).score
@@ -26,6 +28,6 @@ class Scrabble
   public
 
   def score
-    letters.sum {|l| TILES[l] || 0 }
+    letters.sum {|l| TILES[l]}
   end
 end
