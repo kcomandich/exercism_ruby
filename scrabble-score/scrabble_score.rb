@@ -14,7 +14,7 @@ class Scrabble
   TILES.freeze
 
   def self.score(input)
-    Scrabble.new(input).score
+    new(input).score
   end
 
   private
