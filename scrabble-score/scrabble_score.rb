@@ -13,8 +13,8 @@ class Scrabble
   TILES.default = 0
   TILES.freeze
 
-  def self.score(input)
-    new(input).score
+  def self.score(letters)
+    new(letters).score
   end
 
   private
