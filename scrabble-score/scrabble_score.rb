@@ -28,6 +28,6 @@ class Scrabble
   public
 
   def score
-    letters.sum {|l| TILES[l]}
+    letters.sum { |l| TILES[l] }
   end
 end
