@@ -22,7 +22,7 @@ class Scrabble
   attr_reader :letters
 
   def initialize(letters)
-    @letters = letters.to_s.strip.upcase.chars
+    @letters = letters.to_s.upcase.chars
   end
 
   public
