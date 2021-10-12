@@ -29,6 +29,6 @@ class Luhn
   end
 
   def self.luhn_sum(array)
-    array.reduce(0) {|sum, n| sum + n.to_i}
+    array.sum { |n| n.to_i }
   end
 end
