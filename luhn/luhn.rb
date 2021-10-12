@@ -8,8 +8,6 @@ class Luhn
     return divisible_by_10?(result)
   end
 
-  private
-
   def self.invalid_input?(num)
     num.size <= 1 or num.match(/\D/)
   end
