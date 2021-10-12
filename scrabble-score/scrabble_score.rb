@@ -19,15 +19,33 @@ class Scrabble
 
   private
 
-  attr_reader :letters
+  attr_reader :letters, :tile_values
 
-  def initialize(letters)
+  def initialize(letters, tile_values = TILES)
     @letters = letters.to_s.upcase.chars
+    @tile_values = tile_values
   end
 
   public
 
   def score
-    letters.sum { |l| TILES[l] }
+    letters.sum { |l| tile_values[l] }
   end
+end
+
+if $PROGRAM_NAME == __FILE__
+  Hawaiian_Tiles = {
+    'A' =>  1, 'N' =>  3,
+    'O' =>  2,
+    'P' =>  8,
+    'E' =>  4,
+    'H' =>  6, 'U' =>  5,
+    'I' =>  3,
+    'W' =>  9,
+    'K' =>  2,
+    'L' =>  7,
+    'M' =>  8
+  }
+
+  puts Scrabble.new('Humuhumunukunukuapuaa', tile_values = Hawaiian_Tiles).score
 end
