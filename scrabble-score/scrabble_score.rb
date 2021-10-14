@@ -10,8 +10,6 @@ class Scrabble
     'V' => 4, 'W' => 4, 'X' => 8,
     'Y' => 4, 'Z' => 10
   }
-  TILES.default = 0
-  TILES.freeze
 
   def self.score(letters)
     new(letters).score
@@ -24,6 +22,7 @@ class Scrabble
   def initialize(letters, tile_values = TILES)
     @letters = letters.to_s.upcase.chars
     @tile_values = tile_values
+    @tile_values.default = 0
   end
 
   public
