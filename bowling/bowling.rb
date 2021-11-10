@@ -3,7 +3,6 @@ class Game
 
   def initialize
     @frames = []
-    @points = 0
   end
 
   def roll(pins)
