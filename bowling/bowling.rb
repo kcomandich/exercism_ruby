@@ -1,5 +1,3 @@
-require 'pry-byebug'
-
 class Game
   class Error < ::RuntimeError
   end
