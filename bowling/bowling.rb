@@ -1,10 +1,4 @@
 class Game
-  class Error < ::RuntimeError
-  end
-
-  class BowlingError < Error
-  end
-
   attr_reader :frames, :points
 
   def initialize
@@ -56,4 +50,7 @@ class Game
 
     sum
   end
+
+  class BowlingError < StandardError; end
+
 end
