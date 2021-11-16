@@ -1,6 +1,10 @@
 class Game
   attr_reader :frames, :points
 
+  def ready_to_score?
+    frames.size > 9
+  end
+
   def roll(pins)
     raise BowlingError if pins < 0 || pins > 10
     raise BowlingError if frames.last && frames.last.size == 1 && (frames.last[0] + pins > 10)
@@ -20,7 +24,7 @@ class Game
   end
 
   def score
-    raise BowlingError if frames.size < 10
+    raise BowlingError unless ready_to_score? 
     raise BowlingError if frames.size == 10 && (frames.last[0] + frames.last[1]) == 10  # bonus roll(s) missing
     raise BowlingError if frames.size == 11 && frames[frames.size - 2][0] == 10 && frames.last[0] == 10  # final bonus roll missing
 
