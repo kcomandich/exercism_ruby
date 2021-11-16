@@ -1,10 +1,6 @@
 class Game
   attr_reader :frames, :points
 
-  def initialize
-    @frames = []
-  end
-
   def roll(pins)
     raise BowlingError if pins < 0 || pins > 10
     raise BowlingError if frames.last && frames.last.size == 1 && (frames.last[0] + pins > 10)
@@ -48,6 +44,12 @@ class Game
     end
 
     sum
+  end
+
+  private
+
+  def frames
+    @frames ||= []
   end
 
   class BowlingError < StandardError; end
