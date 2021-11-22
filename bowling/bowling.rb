@@ -42,7 +42,7 @@ class Game
 
     sum = 0
     frames.each.with_index do |f,i|
-      sum += f.score if i < 10 # don't count the bonus rolls as frames of their own
+      sum += f.score
       sum += frames[i+1].rolls[0] if f.spare? && frames[i+1]
       sum += frames[i+1].score if f.strike? && frames[i+1]
       sum += frames[i+2].rolls[0] if f.strike? && frames[i+1] && frames[i+1].strike? && frames[i+2]
