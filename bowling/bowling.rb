@@ -22,6 +22,7 @@ class Game
 
   def roll(pins)
     raise BowlingError if ready_to_score? 
+    raise BowlingError if pins < 0 || pins > 10
 
     if @current_frame < 10
       frames[@current_frame] << pins
@@ -30,7 +31,6 @@ class Game
         @current_frame += 1
       end
     else
-      raise BowlingError if pins < 0 || pins > 10
       raise BowlingError if @bonus_score.size > 1
       if @bonus_score[0]
         raise BowlingError unless @bonus_score[0] == 10 || @bonus_score[0] + pins <= 10
@@ -67,7 +67,6 @@ class Game
     end
 
     def << pins
-      raise BowlingError if pins < 0 || pins > 10
       raise BowlingError if score + pins > 10
 
       rolls << pins
