@@ -26,10 +26,7 @@ class Game
 
     if @current_frame < 10
       frames[@current_frame] << pins
-
-      if frames[@current_frame].full?
-        @current_frame += 1
-      end
+      @current_frame += 1 if frames[@current_frame].full?
     else
       raise BowlingError if @bonus_score.size > 1
       if @bonus_score[0]
