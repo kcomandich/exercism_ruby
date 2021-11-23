@@ -1,9 +1,15 @@
 #require 'pry-byebug'
 
 class Game
+  private
+
   def initialize
     @current_frame = 0
     @bonus_score = []
+  end
+
+  def frames
+    @frames ||= Array.new(10) { Frame.new }
   end
 
   def ready_to_score?
@@ -16,44 +22,6 @@ class Game
     else
       frames[9].full?
     end
-  end
-
-  def roll(pins)
-    raise BowlingError if ready_to_score? 
-    raise BowlingError if pins < 0 || pins > 10
-
-    if @current_frame < 10
-      frames[@current_frame] << pins
-      @current_frame += 1 if frames[@current_frame].full?
-    else
-      raise BowlingError if @bonus_score.size > 1
-      if @bonus_score[0]
-        raise BowlingError unless @bonus_score[0] == 10 || @bonus_score[0] + pins <= 10
-      end
-
-      @bonus_score << pins
-    end
-  end
-
-  def score
-    raise BowlingError unless ready_to_score? 
-
-    sum = 0
-    frames.each.with_index do |f,i|
-      sum += f.score
-      sum += frames[i+1].rolls[0] if f.spare? && frames[i+1]
-      sum += frames[i+1].score if f.strike? && frames[i+1]
-      sum += frames[i+2].rolls[0] if f.strike? && frames[i+1] && frames[i+1].strike? && frames[i+2]
-    end
-    
-    sum += @bonus_score[0] if frames[8].strike?
-    sum += @bonus_score.sum
-  end
-
-  private
-
-  def frames
-    @frames ||= Array.new(10) { Frame.new }
   end
 
   class Frame
@@ -91,4 +59,37 @@ class Game
 
   class BowlingError < StandardError; end
 
+  public
+
+  def roll(pins)
+    raise BowlingError if ready_to_score? 
+    raise BowlingError if pins < 0 || pins > 10
+
+    if @current_frame < 10
+      frames[@current_frame] << pins
+      @current_frame += 1 if frames[@current_frame].full?
+    else
+      raise BowlingError if @bonus_score.size > 1
+      if @bonus_score[0]
+        raise BowlingError unless @bonus_score[0] == 10 || @bonus_score[0] + pins <= 10
+      end
+
+      @bonus_score << pins
+    end
+  end
+
+  def score
+    raise BowlingError unless ready_to_score? 
+
+    sum = 0
+    frames.each.with_index do |f,i|
+      sum += f.score
+      sum += frames[i+1].rolls[0] if f.spare? && frames[i+1]
+      sum += frames[i+1].score if f.strike? && frames[i+1]
+      sum += frames[i+2].rolls[0] if f.strike? && frames[i+1] && frames[i+1].strike? && frames[i+2]
+    end
+    
+    sum += @bonus_score[0] if frames[8].strike?
+    sum += @bonus_score.sum
+  end
 end
