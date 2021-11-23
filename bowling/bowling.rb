@@ -1,8 +1,6 @@
 #require 'pry-byebug'
 
 class Game
-  attr_reader :frames
-
   def initialize
     @current_frame = 0
     @bonus_score = []
