@@ -1,4 +1,5 @@
 class Scrabble
+
   TILES = {
     'A' => 1, 'N' => 1,
     'B' => 3, 'O' => 1,
