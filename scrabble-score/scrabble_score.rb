@@ -26,7 +26,7 @@ class Scrabble
 
   def initialize(letters, tiles = TILES)
     @letters = letters.to_s.upcase.chars
-    @tiles = tiles
+    @tiles = tiles.clone
     @tiles.default = 0
   end
 
