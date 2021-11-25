@@ -26,8 +26,8 @@ class Scrabble
 
   def initialize(letters, tiles = TILES)
     @letters = letters.to_s.upcase.chars.map(&:to_sym)
-    @tiles = tiles.transform_keys(&:to_sym)
-    @tiles.default = 0
+    @tiles = tiles.clone.transform_keys!(&:to_sym)
+    @tiles.default ||= 0
   end
 
   public
