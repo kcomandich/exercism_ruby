@@ -32,7 +32,7 @@ class Scrabble
   public
 
   def score
-    letters.sum { |l| tiles[l] }
+    letters.sum(&tiles)
   end
 end
 
