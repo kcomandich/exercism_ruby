@@ -1,15 +1,18 @@
+#require 'pry-byebug'
+
 class Luhn
+  def self.valid?(input)
+    input.gsub!(/\s/, '')
+    return false if invalid_input?(input)
 
-  def self.valid?(num)
-    num.gsub!(/\s/, '')
-    return false if invalid_input?(num)
+    numbers = input.reverse.split('').map(&:to_i)
 
-    result = luhn_calculation(num) 
+    result = luhn_calculation(numbers)
     return divisible_by_10?(result)
   end
 
-  def self.invalid_input?(num)
-    num.size <= 1 or num.match(/\D/)
+  def self.invalid_input?(input)
+    input.size <= 1 or input.match(/\D/)
   end
 
   def self.double_a_digit(digit)
@@ -22,7 +25,8 @@ class Luhn
     num % 10 == 0
   end
 
-  def self.luhn_calculation(num)
-    num.reverse.each_char.with_index.sum {|n, i| i.odd? ? double_a_digit(n.to_i) : n.to_i }
+  def self.luhn_calculation(numbers)
+    (odds, evens) = numbers.partition.with_index{|_,i| i.odd?}
+    evens.sum + odds.sum{ |n| double_a_digit(n) }
   end
 end
