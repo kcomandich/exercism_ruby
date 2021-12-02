@@ -23,10 +23,6 @@ class Luhn
   end
 
   def self.luhn_calculation(num)
-    luhn_sum( num.reverse.each_char.with_index.map {|n, i| i.odd? ? double_a_digit(n.to_i) : n } )
-  end
-
-  def self.luhn_sum(array)
-    array.sum(&:to_i)
+    num.reverse.each_char.with_index.sum {|n, i| i.odd? ? double_a_digit(n.to_i) : n.to_i }
   end
 end
