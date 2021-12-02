@@ -40,17 +40,18 @@ end
 
 if $PROGRAM_NAME == __FILE__
   Hawaiian_Tiles = {
-    A: 1, N: 3,
-    O: 2,
-    P: 8,
-    E: 4,
-    H: 6, U: 5,
-    I: 3,
-    W: 9,
-    K: 2,
-    L: 7,
-    M: 8
+    'A' => 1, 'N' => 3,
+    'O' => 2,
+    'P' => 8,
+    'E' => 4,
+    'H' => 6, 'U' => 5,
+    'I' => 3,
+    'W' => 9,
+    'K' => 2,
+    'L' => 7,
+    'M' => 8
   }
 
   puts Scrabble.new('Humuhumunukunukuapuaa', tiles = Hawaiian_Tiles).score
+  puts Scrabble.new('he´e', Hawaiian_Tiles).score
 end
