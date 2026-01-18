@@ -1,2 +1,3 @@
 *.swp
 .exercism
+.DS_Store
