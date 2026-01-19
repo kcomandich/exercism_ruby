@@ -5,13 +5,7 @@ class Clock
     @hour = time[:hour] ||= 0
     @minute = time[:minute] ||= 0
 
-    if @minute >= 60
-      @hour += @minute / 60
-    end
-
-    if @minute < 0
-      @hour += @minute / 60
-    end
+    @hour += @minute / 60
 
     @hour = @hour % 24
     @minute = @minute % 60
@@ -30,6 +24,6 @@ class Clock
   end
 
   def ==(clock)
-    hour == clock.hour && minute == clock.minute 
+    hour == clock.hour && minute == clock.minute
   end
 end
