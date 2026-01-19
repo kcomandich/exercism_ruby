@@ -1,7 +1,7 @@
 class Clock
   attr_reader :hour, :minute
 
-  def initialize(time)
+  def initialize(time = {})
     @hour = time[:hour] ||= 0
     @minute = time[:minute] ||= 0
 
